@@ -81,22 +81,6 @@ function TaskDisplay(props) {
     }
     const forceUpdate = useForceUpdate();
 
-    function removeTask() { 
-        let url = 'https://michet-task-manager.herokuapp.com/tasks/'+props.data._id
-        axios.delete(url, {
-                headers: {
-                    'Authorization': `Bearer ${mainData.token}`,
-                }
-            }).then((response) => {
-                console.log(response)
-                props.handler()
-                forceUpdate()
-                taskRemoved()
-            }).catch((e) => {
-                console.log(e)
-            })
-
-    }
 
     function completeTask () {
         let url = 'https://michet-task-manager.herokuapp.com/tasks/'+props.data._id
@@ -121,7 +105,7 @@ function TaskDisplay(props) {
     return (
         <>
             <div style={taskComp}>
-                <h1 style={leftStyle}>{number} - {description}<img onClick={removeTask}style={imageStyle} src={crossImg} /><img onClick={completeTask}style={imageStyle} src={checkImg} /></h1>
+                <h1 style={leftStyle}>{number} - {description}<img onClick={completeTask}style={imageStyle} src={checkImg} /></h1>
                 <p style={timeStyle}>{time[0]}</p>
                 
 

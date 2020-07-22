@@ -13,6 +13,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 
 import AddTaskModal from './AddTaskModal';
 import TaskDisplay from './TaskDisplay'
+import TaskDisplayCompleted from './TaskDisplayCompleted';
 
 function isEquivalent(a, b) {
     // Create arrays of property names
@@ -233,7 +234,7 @@ class Tasks extends Component {
                             <div style={mainstyle}>
                                 {
                                     tasksComplete.length ?
-                                        tasksComplete.map((task, index) => <TaskDisplay key={task._id} data={task} handler={this.handlerTask} number={index} />) :
+                                        tasksComplete.map((task, index) => <TaskDisplayCompleted key={task._id} data={task} handler={this.handlerTask} number={index} />) :
                                         null
                                 }
 
