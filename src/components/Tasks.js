@@ -54,6 +54,7 @@ function cannotGetTasks() {
 let data;
 let taskNumberTodo;
 let taskNumberComplete;
+let currentPage = 0;
 
 class Tasks extends Component {
     constructor(props) {
@@ -64,7 +65,8 @@ class Tasks extends Component {
             tasksComplete: [],
             addModalShow: false,
             numTasks: 6,
-            someVar: ""
+            someVar: "",
+            cp: 0
         }
         this.loadTasksTodo = this.loadTasksTodo.bind(this);
         this.handlerTask = this.handlerTask.bind(this);
@@ -87,7 +89,7 @@ class Tasks extends Component {
                     this.setState({ tasksTodo: response.data })
                     this.props.handler()
                 }
-               
+
                 // 
             }).catch((e) => {
                 cannotGetTasks()
@@ -110,7 +112,7 @@ class Tasks extends Component {
                     this.props.handler()
                 }
                 // this.setState({ tasksComplete: response.data })
-                
+
             }).catch((e) => {
                 cannotGetTasks()
             })
@@ -199,13 +201,19 @@ class Tasks extends Component {
             cursor: "pointer"
         }
 
+        currentPage = this.state.cp
+        // console.log(currentPage)
         return (
             <div style={scrolling}>
 
                 <h1 style={mystyle}>📝 Tasks 📝</h1>
                 <br />
                 <div style={{ margin: '20px' }}>
-                    <Tabs>
+                    <Tabs onSelect={(index) => {
+                        this.setState({ cp: index })
+                        this.props.handler()
+
+                    }}>
                         <TabList>
                             <Tab>To Do</Tab>
                             <Tab>Completed</Tab>
@@ -266,3 +274,4 @@ export default Tasks
 
 export { taskNumberTodo }
 export { taskNumberComplete }
+export { currentPage }
