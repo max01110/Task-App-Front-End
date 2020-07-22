@@ -14,6 +14,32 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import AddTaskModal from './AddTaskModal';
 import TaskDisplay from './TaskDisplay'
 
+function isEquivalent(a, b) {
+    // Create arrays of property names
+    var aProps = Object.getOwnPropertyNames(a);
+    var bProps = Object.getOwnPropertyNames(b);
+
+    // If number of properties is different,
+    // objects are not equivalent
+    if (aProps.length != bProps.length) {
+        return false;
+    }
+
+    for (var i = 0; i < aProps.length; i++) {
+        var propName = aProps[i];
+
+        // If values of same property are not equal,
+        // objects are not equivalent
+        if (a[propName] !== b[propName]) {
+            return false;
+        }
+    }
+
+    // If we made it this far, objects
+    // are considered equivalent
+    return true;
+}
+
 toast.configure()
 function cannotGetTasks() {
     // toast.error("⚠️We were not able to retrieve your tasks", {
@@ -53,8 +79,16 @@ class Tasks extends Component {
                     'Authorization': `Bearer ${data.token}`,
                 }
             }).then((response) => {
-                this.setState({ tasksTodo: response.data })
-                this.props.handler()
+                console.log("Isquivalent", this.state.tasksTodo, "and", response.data)
+                if (this.state.tasksTodo.length === response.data.length) {
+                    // console.log('***********Equivalent*************')
+                } else {
+                    // console.log("&&&&&&&&&&NOT EQUIVALENT&&&&&&&&&&&&&")
+                    this.setState({ tasksTodo: response.data })
+                    this.props.handler()
+                }
+               
+                // 
             }).catch((e) => {
                 cannotGetTasks()
             })
@@ -68,8 +102,15 @@ class Tasks extends Component {
                     'Authorization': `Bearer ${data.token}`,
                 }
             }).then((response) => {
-                this.setState({ tasksComplete: response.data })
-                this.props.handler()
+                if (this.state.tasksComplete.length === response.data.length) {
+                    // console.log('***********Equivalent*************')
+                } else {
+                    // console.log("&&&&&&&&&&NOT EQUIVALENT&&&&&&&&&&&&&")
+                    this.setState({ tasksComplete: response.data })
+                    this.props.handler()
+                }
+                // this.setState({ tasksComplete: response.data })
+                
             }).catch((e) => {
                 cannotGetTasks()
             })
@@ -77,15 +118,18 @@ class Tasks extends Component {
     }
 
     componentDidMount() {
+        console.log("Componentdidmount")
         this.loadTasksTodo()
         this.loadTasksComplete()
 
     }
 
     componentDidUpdate() {
+        console.log("Componentdidupdate")
         this.loadTasksTodo()
         this.loadTasksComplete()
     }
+
     handlerTask() {
         this.setState({
             someVar: 'some value'
@@ -102,6 +146,7 @@ class Tasks extends Component {
 
         const { tasksTodo, tasksComplete } = this.state
 
+        console.log("tasksTodo", tasksTodo)
         // const tasks = [{description: 'rg', completed: false},
         // {description: 'bla', completed: false},
         // {description: 'foo', completed: false},

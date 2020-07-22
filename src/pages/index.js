@@ -24,11 +24,6 @@ class index extends Component {
         }
     }
 
-    
-   
-
-    
-
     render() {
         let addModalClose = () => this.setState({addModalShow: false})
         let signupModalClose = () => this.setState({signupModalShow: false})

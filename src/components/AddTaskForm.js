@@ -104,7 +104,6 @@ function AddTaskForm(props) {
                 >Add</AwesomeButtonProgress>
                 
             </form>
-            {/* <button onClick={props.props.props.props}>Test</button> */}
 
 
         </div>
