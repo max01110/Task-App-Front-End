@@ -1,20 +1,22 @@
-import React , { useState } from 'react'
+import React, { useState } from 'react'
 import { Button } from 'react-bootstrap';
 import crossImg from '../assets/cross.png'
 import checkImg from '../assets/checkmark.png'
 import axios from 'axios'
-import {mainData} from '../pages/main'
+import { mainData } from '../pages/main'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import Tippy from '@tippy.js/react'
+import 'tippy.js/dist/tippy.css'
 toast.configure()
 
-function taskRemoved ()  {
+function taskRemoved() {
     toast.info("❌Task Removed", {
         position: toast.POSITION.TOP_CENTER
     })
 }
 
-function taskCompleted ()  {
+function taskCompleted() {
     toast.info("🎉 Task Completed!", {
         position: toast.POSITION.TOP_CENTER
     })
@@ -32,11 +34,11 @@ function TaskDisplay(props) {
     // const number = 1
     // const completed = false
     // const createdAt = "33TUFU UTC AM 88.0"
-    
+
 
     const taskStyle = {
         color: 'white'
- 
+
     }
 
     const taskComp = {
@@ -52,8 +54,8 @@ function TaskDisplay(props) {
         textAlign: "center",
         color: "white",
         fontSize: "30px"
- 
-      }
+
+    }
     const leftStyle = {
         color: 'white',
         fontSize: '25px',
@@ -63,9 +65,10 @@ function TaskDisplay(props) {
     const imageStyle = {
         height: "50px",
         width: "50px",
-        float: "right"
+        float: "right",
+        cursor: "pointer"
 
-        
+
     }
     const timeStyle = {
         color: 'grey',
@@ -75,18 +78,18 @@ function TaskDisplay(props) {
         fontStyle: "italic"
     }
 
-    function useForceUpdate(){
+    function useForceUpdate() {
         const [value, setValue] = useState(0); // integer state
         return () => setValue(value => ++value); // update the state to force render
     }
     const forceUpdate = useForceUpdate();
 
 
-    function completeTask () {
-        let url = 'https://michet-task-manager.herokuapp.com/tasks/'+props.data._id
+    function completeTask() {
+        let url = 'https://michet-task-manager.herokuapp.com/tasks/' + props.data._id
         axios.patch(url, {
-                completed: true
-            },
+            completed: true
+        },
             {
                 headers: {
                     'Authorization': `Bearer ${mainData.token}`,
@@ -100,17 +103,21 @@ function TaskDisplay(props) {
                 console.log(e)
             })
     }
-    
+
 
     return (
         <>
             <div style={taskComp}>
-                <h1 style={leftStyle}>{number} - {description}<img onClick={completeTask}style={imageStyle} src={checkImg} /></h1>
+                <h1 style={leftStyle}>{number} - {description}
+                    <Tippy content="Complete Task">
+                        <img onClick={completeTask} style={imageStyle} src={checkImg} />
+                    </Tippy>
+                </h1>
                 <p style={timeStyle}>{time[0]}</p>
-                
+
 
             </div>
-            <br/>
+            <br />
         </>
     )
 }
