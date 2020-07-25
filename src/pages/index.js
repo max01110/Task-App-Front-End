@@ -7,10 +7,12 @@ import {
 } from 'react-awesome-button';
 import "react-awesome-button/dist/styles.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
 
 import SignUpModal from '../../src/components/SignUpModal';
 import LoginModal from '../components/LoginModal'
 import TasksImg from '../assets/tasks.svg'
+
 
 
 
@@ -40,14 +42,20 @@ class index extends Component {
             fontStyle: "italic",
             fontSize: "20px"
         }
+        const footerStyle = {
+            height: "142px"
+
+
+        }
+
         return (
             <div>
-            
+
                 <div id="leftHalf">
                     <h1 style={title}>Task Manager!</h1>
                     <p style={quote}>Just do stuff!</p>
                     <hr />
-                    <p>🎉 Welcome 🎉</p>
+                    <p>👋 Welcome </p>
                     <p>Login or Sign up and become a pro of organization!</p>
 
                     <div id="vertical-center">
@@ -82,11 +90,35 @@ class index extends Component {
                         onHide={signupModalClose}
                     ></LoginModal>
 
+                    
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+
+                    <hr/>
+            
+
+                    <p>Made by Maxime Michet 💻 🎷 ✈️</p>
+                    <p style={{ textAlign: "center" }}>&copy; {new Date().getFullYear()} Copyright</p>
+                    
                 </div>
 
                 <div id="rightHalf">
                     <img src={TasksImg} style={{ height: 600, width: 500 }} />
+
                 </div>
+
+
             </div>
         )
     }

@@ -20,7 +20,7 @@ export class main extends Component {
         super(props)
 
         this.state = {
-            height: 600,
+            height: 700,
             someVar: ''
         }
         this.handler = this.handler.bind(this)

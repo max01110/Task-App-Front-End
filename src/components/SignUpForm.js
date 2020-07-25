@@ -11,6 +11,7 @@ import {
     // AwesomeButtonSocial,
   } from 'react-awesome-button';
 import "react-awesome-button/dist/styles.css";
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 toast.configure()
 
@@ -48,7 +49,7 @@ const validationSchema = Yup.object({
         .required('Required'),
     
     password: Yup.string()
-    .min(5, 'A password of at least 5 characters is required!')
+    .min(5, 'A password of at least 7 characters is required!')
     .required('Required')
 })
 
@@ -87,7 +88,37 @@ function SignUpForm() {
         validationSchema
     })
     
+    const togglePassword = (t) => {
+        var x = document.getElementById("password")
+        var y = document.getElementById("hide1")
+        var z = document.getElementById("hide2")
+        
 
+        if (x.type === 'password') {
+            x.type = "text"
+            y.style.display = "block"
+            z.style.display = "none"  
+        } else {
+            x.type = "password"
+            y.style.display = "none"
+            z.style.display = "block"  
+        }      
+    }
+
+    //Styling
+    const eyeStyle = {
+        position: "absolute",
+        top: "267px",
+        left: "380px"
+    }
+
+    const hide1 = {
+        display: "none"
+    }
+
+    const hide2 = {
+
+    }
     if (loggedIn) {
         return (<Redirect to="/main"/>)
     } else {
@@ -99,6 +130,7 @@ function SignUpForm() {
             <input 
                 type='text' 
                 id='name' 
+                placeholder="Name"
                 name='name' 
                 onChange={formik.handleChange} 
                 onBlur={formik.handleBlur}
@@ -109,6 +141,7 @@ function SignUpForm() {
             <input 
                 type='text' 
                 id='age' 
+                placeholder="Your age"
                 name='age' 
                 onChange={formik.handleChange} 
                 onBlur={formik.handleBlur}
@@ -118,7 +151,8 @@ function SignUpForm() {
             <label htmlFor='email'>E-mail</label>
             <input 
                 type='text' 
-                id='email' 
+                id='email'
+                placeholder="email@mail.com"
                 name='email' 
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -127,14 +161,17 @@ function SignUpForm() {
 
             <label htmlFor='password'>Password</label>
             <input 
-                type='text' 
+                type='password' 
                 id='password' 
                 name='password' 
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.password}></input>
             {formik.touched.password && formik.errors.password ? <div className='error'>{formik.errors.password}</div> : null}
-
+            <span style={eyeStyle} class="eye" onClick={togglePassword}>
+                    <FaEye style={hide1} id="hide1"/>
+                    <FaEyeSlash style={hide2} id="hide2"/>
+            </span>
             <AwesomeButtonProgress
                 type="secondary"
                 size="large"

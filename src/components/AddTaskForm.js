@@ -43,7 +43,9 @@ function AddTaskForm(props) {
                 description: values.description
             }, {
                 headers: {
-                            'Authorization': `Bearer ${mainData.token}`                        }    
+                            'Authorization': `Bearer ${mainData.token}`,
+                            crossdomain: true    
+                }    
                 
     
                 }).then((resp) => {
