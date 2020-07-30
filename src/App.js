@@ -12,17 +12,19 @@ import Main from './pages/main'
 
 function App() {
   return (
-
-  <Router>
-    <auth/>
-    <Switch>
-    <Route exact path="/" component={MainPage}/>
-    <Route exact path="/404" component={NotFoundPage}/>
-    <Route exact path="/main" component={Main}/>
+    <div>
+      <p>Test</p>
+    </div>
+  // <Router>
+  //   <auth/>
+  //   <Switch>
+  //   <Route exact path="/" component={MainPage}/>
+  //   <Route exact path="/404" component={NotFoundPage}/>
+  //   <Route exact path="/main" component={Main}/>
     
-    <Redirect to="/404"/>
-    </Switch>
-  </Router>
+  //   <Redirect to="/404"/>
+  //   </Switch>
+  // </Router>
   )
 
 }
