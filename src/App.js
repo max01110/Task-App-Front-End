@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom'
+import { HashRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom'
 //Pages
 import MainPage from './pages/index'
 import NotFoundPage from './pages/404'
