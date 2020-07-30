@@ -1,20 +1,22 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
+import Cookies from 'js-cookie'
+
 import { data } from '../Auth'
 import { dataLogin } from '../Auth'
 import Account from '../components/Account'
 import Tasks from '../components/Tasks'
-
 import CoolTabs from 'react-cool-tabs';
 import { taskNumberTodo } from '../components/Tasks'
 import { taskNumberComplete } from '../components/Tasks'
 import { currentPage } from '../components/Tasks'
 
+
 let mainData;
 let heightEdited;
 let prevTaskNumTodo = 0
 let prevTaskNumComplete = 0
-
+let loggedIn = false;
 export class main extends Component {
     constructor(props) {
         super(props)
@@ -68,17 +70,34 @@ export class main extends Component {
         
     }
 
+
+    readCookie () {
+        
+        let user = Cookies.get('user')
+        if (user !== undefined) {
+            user = JSON.parse(user)
+            console.log("COOKIE", user)
+            mainData = user
+            loggedIn = true;
+        }
+    }
     render() {
 
         heightEdited = this.state.height.toString() + "px"
 
         if (data !== undefined) {
             mainData = data
+            loggedIn = true
         } else {
             mainData = dataLogin
+            loggedIn = true
         }
 
-        if (mainData !== undefined) {
+        if (mainData === undefined) {
+            loggedIn = false
+        }
+        this.readCookie()
+        if (loggedIn === true) {
         return (
             <div>
                 <CoolTabs

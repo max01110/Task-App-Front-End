@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
+import Cookies from 'js-cookie'
 import { Redirect } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import {
@@ -61,6 +62,7 @@ function LoginForm() {
             loggedIn = true;
             forceUpdate()
             console.log(dataLogin)
+            Cookies.set('user', dataLogin);
             welcomeBack(dataLogin.user.name)
         }).catch((e) => {
             //Little notification
