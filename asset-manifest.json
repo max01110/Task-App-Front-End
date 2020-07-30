@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/Task-App-Front-End/static/css/main.dd1e8771.chunk.css",
-    "main.js": "/Task-App-Front-End/static/js/main.0b50bf49.chunk.js",
-    "main.js.map": "/Task-App-Front-End/static/js/main.0b50bf49.chunk.js.map",
+    "main.js": "/Task-App-Front-End/static/js/main.5bcaedfb.chunk.js",
+    "main.js.map": "/Task-App-Front-End/static/js/main.5bcaedfb.chunk.js.map",
     "runtime-main.js": "/Task-App-Front-End/static/js/runtime-main.d02ba498.js",
     "runtime-main.js.map": "/Task-App-Front-End/static/js/runtime-main.d02ba498.js.map",
-    "static/css/2.e37b16eb.chunk.css": "/Task-App-Front-End/static/css/2.e37b16eb.chunk.css",
-    "static/js/2.51b8bbd1.chunk.js": "/Task-App-Front-End/static/js/2.51b8bbd1.chunk.js",
-    "static/js/2.51b8bbd1.chunk.js.map": "/Task-App-Front-End/static/js/2.51b8bbd1.chunk.js.map",
+    "static/css/2.72708609.chunk.css": "/Task-App-Front-End/static/css/2.72708609.chunk.css",
+    "static/js/2.49a3333c.chunk.js": "/Task-App-Front-End/static/js/2.49a3333c.chunk.js",
+    "static/js/2.49a3333c.chunk.js.map": "/Task-App-Front-End/static/js/2.49a3333c.chunk.js.map",
     "index.html": "/Task-App-Front-End/index.html",
-    "precache-manifest.12f849f409d471549dc4045064c16169.js": "/Task-App-Front-End/precache-manifest.12f849f409d471549dc4045064c16169.js",
+    "precache-manifest.a2a182d9914b76e4ebc2453788f532d5.js": "/Task-App-Front-End/precache-manifest.a2a182d9914b76e4ebc2453788f532d5.js",
     "service-worker.js": "/Task-App-Front-End/service-worker.js",
-    "static/css/2.e37b16eb.chunk.css.map": "/Task-App-Front-End/static/css/2.e37b16eb.chunk.css.map",
+    "static/css/2.72708609.chunk.css.map": "/Task-App-Front-End/static/css/2.72708609.chunk.css.map",
     "static/css/main.dd1e8771.chunk.css.map": "/Task-App-Front-End/static/css/main.dd1e8771.chunk.css.map",
-    "static/js/2.51b8bbd1.chunk.js.LICENSE.txt": "/Task-App-Front-End/static/js/2.51b8bbd1.chunk.js.LICENSE.txt",
+    "static/js/2.49a3333c.chunk.js.LICENSE.txt": "/Task-App-Front-End/static/js/2.49a3333c.chunk.js.LICENSE.txt",
     "static/media/checkmark.png": "/Task-App-Front-End/static/media/checkmark.34bb4d39.png",
     "static/media/cross.png": "/Task-App-Front-End/static/media/cross.8ecdfd68.png",
     "static/media/logo.svg": "/Task-App-Front-End/static/media/logo.5d5d9eef.svg",
@@ -21,9 +21,9 @@
   },
   "entrypoints": [
     "static/js/runtime-main.d02ba498.js",
-    "static/css/2.e37b16eb.chunk.css",
-    "static/js/2.51b8bbd1.chunk.js",
+    "static/css/2.72708609.chunk.css",
+    "static/js/2.49a3333c.chunk.js",
     "static/css/main.dd1e8771.chunk.css",
-    "static/js/main.0b50bf49.chunk.js"
+    "static/js/main.5bcaedfb.chunk.js"
   ]
 }
