@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
 import {Modal, Button, Row, Col, Form} from 'react-bootstrap'
-import AddTaskForm from './AddTaskForm'
+import UpdateAgeForm from './UpdateAgeForm'
 
 
-export class AddTaskModal extends Component{
+export class UpdateAgeModal extends Component{
     constructor(props) {
         super(props)
 
@@ -13,7 +13,7 @@ export class AddTaskModal extends Component{
     
     clickHandler() {
       this.props.onHide()
-      // this.props.onStatusUpdate();
+    //   this.props.onStatusUpdate();
     }
 
     render() {
@@ -26,14 +26,14 @@ export class AddTaskModal extends Component{
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Create New Task
+          Update Age 🔧
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <AddTaskForm props={this.props}/>
+        <UpdateAgeForm props={this.props}/>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={this.clickHandler}>Close</Button>
+        <Button updatae={this.props} onClick={this.clickHandler}>Close</Button>
       </Modal.Footer>
     </Modal>
     );
@@ -41,4 +41,4 @@ export class AddTaskModal extends Component{
   }
 
 
-  export default AddTaskModal
+  export default UpdateAgeModal

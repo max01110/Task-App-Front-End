@@ -37,7 +37,6 @@ export class main extends Component {
     componentDidUpdate() {
 
         if (currentPage === 0) {
-            console.log('numbe 0r', taskNumberTodo)
             if (taskNumberTodo !== prevTaskNumTodo && taskNumberTodo !== 0) {
 
                 prevTaskNumTodo = taskNumberTodo
@@ -47,14 +46,12 @@ export class main extends Component {
                         height: ((taskNumberTodo) * 270)
                     }))
                 } else {
-                    console.log('in 600 brah')
                     this.setState((prevState, props) => ({
-                        height: 600
+                        height: 800
                     }))
                 }
             }
         } else if (currentPage === 1) {
-            console.log('number 1', taskNumberComplete)
             if (taskNumberComplete !== prevTaskNumComplete && taskNumberComplete !== 0) {
                 prevTaskNumComplete = taskNumberComplete
                 if (taskNumberComplete > 3) {
@@ -63,7 +60,7 @@ export class main extends Component {
                     }))
                 } else {
                     this.setState((prevState, props) => ({
-                        height: 600
+                        height: 800
                     }))
                 }
             }
@@ -80,6 +77,8 @@ export class main extends Component {
         } else {
             mainData = dataLogin
         }
+
+        if (mainData !== undefined) {
         return (
             <div>
                 <CoolTabs
@@ -101,11 +100,11 @@ export class main extends Component {
 
             </div>
         )
-        // } else {
-        //     return (
-        //         <Redirect to="/"/>
-        //     )
-        // }
+        } else {
+            return (
+                <Redirect to="/"/>
+            )
+        }
 
     }
 }

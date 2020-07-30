@@ -3,8 +3,12 @@ import axios from 'axios'
 import { mainData } from '../pages/main'
 import Tippy from '@tippy.js/react'
 import 'tippy.js/dist/tippy.css'
+import UpdateNameModal from './UpdateNameModal'
+import UpdateAgeModal from './UpdateAgeModal'
+import UpdateEmailModal from './UpdateEmailModal'
+import DeleteAccount from './DeleteAccountModal'
 
-import updateImg from '../assets/update.jpg'
+import updateImg from '../assets/update.png'
 class Account extends Component {
     constructor(props) {
         super(props)
@@ -13,26 +17,40 @@ class Account extends Component {
 
 
         this.state = {
-            user: {}
+            user: {},
+            UpdateNameModalShow: false,
+            UpdateEmailModalShow: false,
+            UpdateAgeModalShow: false,
+            deleteAccountModalShow: false
         }
+        this.updateNameHandler = this.updateNameHandler.bind(this)
+        this.updateAgeHandler = this.updateAgeHandler.bind(this)
+        this.updateEmailHandler = this.updateEmailHandler.bind(this)
+        this.fetchUser = this.fetchUser.bind(this)
+        this.deleteAccountHandler = this.deleteAccountHandler.bind(this)
     }
 
     componentDidMount() {
 
         if (mainData !== undefined) {
-            axios.get('https://michet-task-manager.herokuapp.com/users/me', {
-                headers: {
-                    'Authorization': `Bearer ${mainData.token}`,
-                }
-            }).then((response) => {
-                console.log(response)
-                this.setState({ user: response.data })
-
-            }).catch((e) => {
-                console.log(e)
-                console.log('crap')
-            })
+            this.fetchUser()
         }
+    }
+
+    fetchUser() {
+        console.log("Fetched------------")
+        axios.get('https://michet-task-manager.herokuapp.com/users/me', {
+            headers: {
+                'Authorization': `Bearer ${mainData.token}`,
+            }
+        }).then((response) => {
+            console.log(response)
+            this.setState({ user: response.data })
+
+        }).catch((e) => {
+            console.log(e)
+            console.log('crap')
+        })
     }
 
     avatarSubmitHandler(event) {
@@ -56,19 +74,28 @@ class Account extends Component {
     }
 
     updateNameHandler() {
-        console.log('Name Update')
+        this.setState({ UpdateNameModalShow: true })
     }
 
     updateAgeHandler() {
-        console.log('Age Update')
+        this.setState({ UpdateAgeModalShow: true })
     }
 
     updateEmailHandler() {
-        console.log('Email Update')
+        this.setState({ UpdateEmailModalShow: true })
     }
 
+    deleteAccountHandler() {
+        this.setState({ deleteAccountModalShow: true })
+    }
     render() {
         const { user } = this.state
+
+        let UpdateNameModalClose = () => this.setState({ UpdateNameModalShow: false })
+        let UpdateAgeModalClose = () => this.setState({ UpdateAgeModalShow: false })
+        let UpdateEmailModalClose = () => this.setState({ UpdateEmailModalShow: false })
+        let deleteAccountModalClose = () => this.setState({ deleteAccountModalShow: false })
+
 
         const mystyle = {
             color: "white",
@@ -85,9 +112,10 @@ class Account extends Component {
             fontSize: "20px"
         }
         const imageStyle = {
-            height: "70px",
-            width: "90px",
-            cursor: "pointer"
+            height: "40px",
+            width: "40px",
+            cursor: "pointer",
+            padding: '5px'
         }
 
         const dangerStyle = {
@@ -137,40 +165,56 @@ class Account extends Component {
                         </Tippy>
                     </h1>
                     <p>{user.name}</p>
-                    <hr/>
+                    <hr />
                     <h1>Age
                         <Tippy content="Update Age">
                             <img onClick={this.updateAgeHandler} style={imageStyle} src={updateImg} />
                         </Tippy>
                     </h1>
                     <p>You lived <b>{user.age}</b> years in our beautiful world 🌎 </p>
-                    <hr/>
+                    <hr />
                     <h1>Email
                         <Tippy content="Update Email">
-                            <img onClick={this.updateEmailHandler} style={imageStyle} src={updateImg} /> 
+                            <img onClick={this.updateEmailHandler} style={imageStyle} src={updateImg} />
                         </Tippy>
                     </h1>
                     <p>{user.email}</p>
-                    <hr/>
+                    <hr />
 
                     <h1>Account Creation</h1>
-                    <p>You created your accout on <b>{time}</b> at {timeHr} 😉 </p>
-                    <br/>
-                    <hr style={{borderTop: "3px dashed red"}}/>
+                    <p>You created your accout on <b>{time}</b> at {timeHr} (UTC)😉 </p>
+                    <hr style={{ borderTop: "3px dashed red" }} />
                     <h1 style={dangerStyle}>Danger Zone</h1>
-                    <button style={deleteAccStyle}>Delete Account</button>
+                    <button style={deleteAccStyle} onClick={this.deleteAccountHandler}>Delete Account</button>
 
-
-                    {/* <div id="rightHalf" style={dangerStyle}>
-                    <p>Danger Zone</p>
-                    <button>Delete Account</button>
-                    </div> */}
-                    {/* <img src={avatarURL} /> */}
                 </div>
 
+                <UpdateNameModal
+                    show={this.state.UpdateNameModalShow}
+                    onHide={UpdateNameModalClose}
+                    props={this.props}
+                    Update={this.fetchUser}
+                ></UpdateNameModal>
 
+                <UpdateAgeModal
+                    show={this.state.UpdateAgeModalShow}
+                    onHide={UpdateAgeModalClose}
+                    props={this.props}
+                    Update={this.fetchUser}
+                ></UpdateAgeModal>
 
-
+                <UpdateEmailModal
+                    show={this.state.UpdateEmailModalShow}
+                    onHide={UpdateEmailModalClose}
+                    props={this.props}
+                    Update={this.fetchUser}
+                ></UpdateEmailModal>
+                <DeleteAccount
+                    show={this.state.deleteAccountModalShow}
+                    onHide={deleteAccountModalClose}
+                    props={this.props}
+                    Update={this.fetchUser}
+                ></DeleteAccount>
             </>
         )
     }
