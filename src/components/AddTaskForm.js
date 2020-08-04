@@ -59,6 +59,14 @@ function AddTaskForm(props) {
             })
     }
 
+    const handleKeyPress = (event) => {
+        if(event.key === 'Enter'){
+            formik.handleSubmit()
+            props.props.Refresh()
+            props.props.onHide()
+        }
+      }
+
     const formik = useFormik({
         initialValues,
         onSubmit
@@ -87,6 +95,7 @@ function AddTaskForm(props) {
             <textarea 
                 type='text' 
                 id='description' 
+                onKeyPress={handleKeyPress}
                 name='description' 
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -104,7 +113,8 @@ function AddTaskForm(props) {
                     props.props.onHide()
                 }}
                 >Add</AwesomeButtonProgress>
-                
+                           {/* <input type="text" id="one" onKeyPress={handleKeyPress} /> */}
+
             </form>
 
 
