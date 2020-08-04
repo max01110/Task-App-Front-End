@@ -45,14 +45,8 @@ function AddTaskForm(props) {
                 headers: {
                             'Authorization': `Bearer ${mainData.token}`,
                             crossdomain: true    
-                }    
-                
-    
+                }
                 }).then((resp) => {
-                    console.log(resp)
-                    // if (tasks > 5) {
-                    //     updateScroll()
-                    // }
                     
                 }).catch((e) => {
                     cannotAddTask()

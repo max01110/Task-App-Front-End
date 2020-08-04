@@ -25,10 +25,13 @@ function taskUncompleted() {
 
 
 function TaskDisplayCompleted(props) {
+    console.log("PROPS DATA", props.data)
     let description = props.data.description
     let number = props.number + 1
     let createdAt = props.data.createdAt
+    let updatedAt = props.data.updatedAt
     let time = createdAt.split("T")
+    let update = updatedAt.split("T")
     // const { description, completed, createdAt } = props.data
     // console.log("data", props.data)
     // const description = "Do that thing"
@@ -68,8 +71,6 @@ function TaskDisplayCompleted(props) {
         width: "50px",
         float: "right",
         cursor: "pointer"
-
-
     }
     const timeStyle = {
         color: 'grey',
@@ -92,7 +93,6 @@ function TaskDisplayCompleted(props) {
                 'Authorization': `Bearer ${mainData.token}`,
             }
         }).then((response) => {
-            console.log(response)
             props.handler()
             forceUpdate()
             taskRemoved()
@@ -112,7 +112,6 @@ function TaskDisplayCompleted(props) {
                     'Authorization': `Bearer ${mainData.token}`,
                 }
             }).then((response) => {
-                console.log(response)
                 props.handler()
                 taskUncompleted()
                 forceUpdate()
@@ -133,11 +132,13 @@ function TaskDisplayCompleted(props) {
                         <img onClick={uncompleteTask} style={imageStyle} src={undoImg} />
                     </Tippy>
                 </h1>
-                <p style={timeStyle}>{time[0]}</p>
+                <p style={timeStyle}>Created {time[0]}</p>
+                <p style={timeStyle}>Completed {update[0]}</p>
+                
 
 
             </div>
-            <br />
+            <br/>
         </>
     )
 }
